@@ -69,6 +69,6 @@ class __TwigTemplate_e28882cd9c95bb3cfeee9c5bc4ec75759da421fbc8427dcb815ddd9f481
         return new Source("/*
 {{ include('@Twig/Exception/exception.txt.twig', { exception: exception }) }}
 */
-", "@Twig/Exception/exception.css.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/twig-bundle/Resources/views/Exception/exception.css.twig");
+", "@Twig/Exception/exception.css.twig", "/home/adji/MON-TRAVAIL/vendor/symfony/twig-bundle/Resources/views/Exception/exception.css.twig");
     }
 }

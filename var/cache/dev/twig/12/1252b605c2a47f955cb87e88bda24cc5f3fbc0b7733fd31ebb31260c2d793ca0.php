@@ -57,6 +57,6 @@ class __TwigTemplate_506b4ab34aa2c1b89fab911ee27762e0f2d1d106e7db38459be3fe9fcdd
     public function getSourceContext()
     {
         return new Source("<?php echo \$view['form']->block(\$form, 'choice_widget_options') ?>
-", "@Framework/Form/choice_options.html.php", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/framework-bundle/Resources/views/Form/choice_options.html.php");
+", "@Framework/Form/choice_options.html.php", "/home/adji/MON-TRAVAIL/vendor/symfony/framework-bundle/Resources/views/Form/choice_options.html.php");
     }
 }

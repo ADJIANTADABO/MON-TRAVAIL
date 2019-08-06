@@ -96,6 +96,6 @@ class __TwigTemplate_5345cdbd8acbd262c50824f120b7d88a3e93c1d1bb3f9d3feb75b0fd52a
 {{ include('@Twig/Exception/traces.txt.twig', { exception: e }, with_context = false) }}
 
 {% endfor %}
-", "@Twig/Exception/exception.txt.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/twig-bundle/Resources/views/Exception/exception.txt.twig");
+", "@Twig/Exception/exception.txt.twig", "/home/adji/MON-TRAVAIL/vendor/symfony/twig-bundle/Resources/views/Exception/exception.txt.twig");
     }
 }

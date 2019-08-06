@@ -89,6 +89,6 @@ class __TwigTemplate_76b4285aeefe51a8c083aab8c4f3b1e3a9c59234283ac066ead93661cc7
             </trace>
 {% endfor %}
         </traces>
-", "@Twig/Exception/traces.xml.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/twig-bundle/Resources/views/Exception/traces.xml.twig");
+", "@Twig/Exception/traces.xml.twig", "/home/adji/MON-TRAVAIL/vendor/symfony/twig-bundle/Resources/views/Exception/traces.xml.twig");
     }
 }

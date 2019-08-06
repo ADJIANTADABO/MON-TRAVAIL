@@ -59,6 +59,6 @@ class __TwigTemplate_bffef40e927b8acac5d0945c4b14561e3edd0ab3a76e4174afb69e27a6e
     {
         return new Source("<?php \$symbol = false !== \$symbol ? (\$symbol ? ' '.\$symbol : ' %') : '' ?>
 <?php echo \$view['form']->block(\$form, 'form_widget_simple', ['type' => isset(\$type) ? \$type : 'text']).\$view->escape(\$symbol) ?>
-", "@Framework/Form/percent_widget.html.php", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/framework-bundle/Resources/views/Form/percent_widget.html.php");
+", "@Framework/Form/percent_widget.html.php", "/home/adji/MON-TRAVAIL/vendor/symfony/framework-bundle/Resources/views/Form/percent_widget.html.php");
     }
 }

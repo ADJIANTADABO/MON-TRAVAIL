@@ -57,6 +57,6 @@ class __TwigTemplate_8977bd775c8205c7d82174baf9295d5c3520d34f4e3dd167c723c2ee862
     public function getSourceContext()
     {
         return new Source("<?php echo \$view['form']->block(\$form, 'form_widget_simple', ['type' => isset(\$type) ? \$type : 'hidden']) ?>
-", "@Framework/Form/hidden_widget.html.php", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/framework-bundle/Resources/views/Form/hidden_widget.html.php");
+", "@Framework/Form/hidden_widget.html.php", "/home/adji/MON-TRAVAIL/vendor/symfony/framework-bundle/Resources/views/Form/hidden_widget.html.php");
     }
 }

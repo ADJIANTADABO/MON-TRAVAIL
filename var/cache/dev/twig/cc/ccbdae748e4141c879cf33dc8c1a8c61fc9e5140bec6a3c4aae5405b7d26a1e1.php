@@ -65,6 +65,6 @@ class __TwigTemplate_1e2b29593faf3167b046b1ea8d7e5fbc391089d710355d49b70d31bcc42
 <?php else: ?>
 <?php echo \$view['form']->block(\$form, 'choice_widget_collapsed') ?>
 <?php endif ?>
-", "@Framework/Form/choice_widget.html.php", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/framework-bundle/Resources/views/Form/choice_widget.html.php");
+", "@Framework/Form/choice_widget.html.php", "/home/adji/MON-TRAVAIL/vendor/symfony/framework-bundle/Resources/views/Form/choice_widget.html.php");
     }
 }

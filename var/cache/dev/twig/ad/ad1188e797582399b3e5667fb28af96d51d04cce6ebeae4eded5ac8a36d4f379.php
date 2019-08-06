@@ -206,6 +206,6 @@ class __TwigTemplate_41c7184949c7556549ee4b70defa85bfe5e6858a210dd7c6f1bb9e24cd8
     {% endfor %}
     </tbody>
 </table>
-", "@Twig/Exception/logs.html.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/twig-bundle/Resources/views/Exception/logs.html.twig");
+", "@Twig/Exception/logs.html.twig", "/home/adji/MON-TRAVAIL/vendor/symfony/twig-bundle/Resources/views/Exception/logs.html.twig");
     }
 }

@@ -77,6 +77,6 @@ class __TwigTemplate_89a20523a52fb8e7fe64bb1e52aa05a00214fd9e435b3b5bd6d37915156
     <?php echo \$view['form']->block(\$form, 'form_rows'); ?>
     <?php echo \$view['form']->rest(\$form); ?>
 </table>
-", "@Framework/FormTable/form_widget_compound.html.php", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/framework-bundle/Resources/views/FormTable/form_widget_compound.html.php");
+", "@Framework/FormTable/form_widget_compound.html.php", "/home/adji/MON-TRAVAIL/vendor/symfony/framework-bundle/Resources/views/FormTable/form_widget_compound.html.php");
     }
 }

@@ -57,6 +57,6 @@ class __TwigTemplate_b3a44a9325768d675a9525dd64f93a06384c8cca93388e42e92b9994638
     public function getSourceContext()
     {
         return new Source("<?php echo \$view['form']->widget(\$form) ?>
-", "@Framework/Form/hidden_row.html.php", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/framework-bundle/Resources/views/Form/hidden_row.html.php");
+", "@Framework/Form/hidden_row.html.php", "/home/adji/MON-TRAVAIL/vendor/symfony/framework-bundle/Resources/views/Form/hidden_row.html.php");
     }
 }

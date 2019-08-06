@@ -63,6 +63,6 @@ class __TwigTemplate_43b8367c877f9147a47bf8aa4ad5e849b72c641d39e50a23cdc7b1c2d01
     public function getSourceContext()
     {
         return new Source("{{ include('@Twig/Exception/error.xml.twig') }}
-", "@Twig/Exception/error.rdf.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/twig-bundle/Resources/views/Exception/error.rdf.twig");
+", "@Twig/Exception/error.rdf.twig", "/home/adji/MON-TRAVAIL/vendor/symfony/twig-bundle/Resources/views/Exception/error.rdf.twig");
     }
 }

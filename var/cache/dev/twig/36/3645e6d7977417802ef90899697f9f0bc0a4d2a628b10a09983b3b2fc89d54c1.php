@@ -232,6 +232,6 @@ class __TwigTemplate_533d35785a24998ea6c5b16301a02e84ef0af5551f433e6cb12ee53a8ef
     {%- set label = label|trans|default(label) -%}
     {{- block('form_label') -}}
 {%- endblock -%}
-", "@VichUploader/Form/fields.html.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/vich/uploader-bundle/Resources/views/Form/fields.html.twig");
+", "@VichUploader/Form/fields.html.twig", "/home/adji/MON-TRAVAIL/vendor/vich/uploader-bundle/Resources/views/Form/fields.html.twig");
     }
 }

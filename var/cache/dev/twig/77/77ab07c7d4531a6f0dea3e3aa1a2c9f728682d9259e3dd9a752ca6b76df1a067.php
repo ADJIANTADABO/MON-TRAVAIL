@@ -267,6 +267,6 @@ class __TwigTemplate_37a897243de5dc53e87be98824d2f363e66da262491e3be1e40ed10d0e3
         </tbody>
     </table>
 {% endblock %}
-", "@VichUploader/Collector/mapping_collector.html.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/vich/uploader-bundle/Resources/views/Collector/mapping_collector.html.twig");
+", "@VichUploader/Collector/mapping_collector.html.twig", "/home/adji/MON-TRAVAIL/vendor/vich/uploader-bundle/Resources/views/Collector/mapping_collector.html.twig");
     }
 }

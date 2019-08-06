@@ -8,6 +8,8 @@ return [
     'apidepot' => [[], ['_controller' => 'App\\Controller\\AjoutController::depot'], [], [['text', '/api/depoTcompte']], [], []],
     'apiupdatparten' => [[], ['_controller' => 'App\\Controller\\AjoutController::userBloquer'], [], [['text', '/api/bloquer']], [], []],
     'apiupdat' => [[], ['_controller' => 'App\\Controller\\AjoutController::userBloquer'], [], [['text', '/api/debloquer']], [], []],
+    'apilistpartenaire' => [[], ['_controller' => 'App\\Controller\\AjoutController::listParten'], [], [['text', '/api/listParten']], [], []],
+    'apiregister' => [[], ['_controller' => 'App\\Controller\\UserController::new'], [], [['text', '/api/register']], [], []],
     'login' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::login'], [], [['text', '/api/login']], [], []],
     'register' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::register'], [], [['text', '/api/utilisateur']], [], []],
     'profil' => [[], ['_controller' => 'App\\Controller\\UtilisateurController::ajoutprofil'], [], [['text', '/api/profil']], [], []],

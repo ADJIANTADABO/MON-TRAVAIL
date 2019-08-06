@@ -124,6 +124,6 @@ class __TwigTemplate_ce07b84e94a7db18ff434a7279bd9e0fb158e1b208fedb89d27b937da92
 
 </body>
 </html>
-", "@ApiPlatform/Graphiql/index.html.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/api-platform/core/src/Bridge/Symfony/Bundle/Resources/views/Graphiql/index.html.twig");
+", "@ApiPlatform/Graphiql/index.html.twig", "/home/adji/MON-TRAVAIL/vendor/api-platform/core/src/Bridge/Symfony/Bundle/Resources/views/Graphiql/index.html.twig");
     }
 }

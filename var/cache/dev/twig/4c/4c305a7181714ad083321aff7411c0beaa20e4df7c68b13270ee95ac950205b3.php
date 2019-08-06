@@ -357,6 +357,6 @@ class __TwigTemplate_7ad69ca6c2159a2e8c14d785ca8608323a982b5a9e45ed5b5b6ec3e72a5
 
 </body>
 </html>
-", "@ApiPlatform/SwaggerUi/index.html.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/api-platform/core/src/Bridge/Symfony/Bundle/Resources/views/SwaggerUi/index.html.twig");
+", "@ApiPlatform/SwaggerUi/index.html.twig", "/home/adji/MON-TRAVAIL/vendor/api-platform/core/src/Bridge/Symfony/Bundle/Resources/views/SwaggerUi/index.html.twig");
     }
 }

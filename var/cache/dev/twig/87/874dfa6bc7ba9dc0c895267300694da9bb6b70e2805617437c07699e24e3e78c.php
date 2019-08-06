@@ -165,6 +165,6 @@ class __TwigTemplate_3c6905ca8b62e114f7c73ed1abafbae4f86963af4c7a0ed29868e28b7d1
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/doctrine/doctrine-bundle/Resources/views/Collector/explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "/home/adji/MON-TRAVAIL/vendor/doctrine/doctrine-bundle/Resources/views/Collector/explain.html.twig");
     }
 }

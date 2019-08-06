@@ -3,21 +3,22 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Partenaire;
-use App\Entity\Profil;
+use App\Entity\Depot;
 use App\Entity\Compte;
+use App\Entity\Profil;
+use App\Entity\Partenaire;
 use App\Repository\UserRepository;
+use App\Repository\PartenaireRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response ;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Entity\Depot;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 /**
      * @Route("/api", name="api")
@@ -165,6 +166,19 @@ public function userBloquer(Request $request, UserRepository $userRepo,EntityMan
         ];
         return new JsonResponse($data);
     
+    }
+//==============================Lister Partenaire========================£======================================================================================================//
+/**
+     * @Route("/listParten", name="listpartenaire", methods={"GET"})
+     */
+    public function listParten(PartenaireRepository $partenaireRepository, SerializerInterface $serializer)
+    {
+        $partenaires = $partenaireRepository->findAll();
+        $data = $serializer->serialize($partenaires, 'json');
+
+        return new Response($data, 200, [
+            'Content-Type' => 'application/json'
+        ]);
     }
 //======================================================================================================================================================//
 

@@ -2,20 +2,21 @@
 namespace App\Controller;
 
 use App\Entity\User;
-use App\Entity\Partenaire;
-use App\Entity\Profil;
 use App\Entity\Compte;
+use App\Entity\Profil;
+use App\Entity\Partenaire;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response ;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 
 
@@ -49,7 +50,7 @@ class UtilisateurController extends AbstractController
             $user = new User();
             $user->setUsername($values->username);
             $user->setPassword($passwordEncoder->encodePassword($user,$values->password));
-            $user->setRoles($values->roles);
+            $user->setRoles(["ROLE_ADMIN"]);
             $user->setNom($values->nom);
             $user->setPrenom($values->prenom);
             $user->setAdresse($values->adresse);
@@ -57,6 +58,9 @@ class UtilisateurController extends AbstractController
             $user->setTelephone($values->telephone);
             $user->setCni($values->cni);
             $user->setStatut($values->statut);
+            $user->setImageName("null");
+            $user->setUpdatedAt(new \DateTime('now'));
+            
             
             $repo = $this->getDoctrine()->getRepository(Partenaire::class);
             $partenaires=$repo->find($values->partenaire);
@@ -85,7 +89,7 @@ class UtilisateurController extends AbstractController
 
             $data = [
                 'statuts' => 201,
-                'message' => 'L\'utilisateur a été créé'
+                'message1' => 'L\'utilisateur a été créé'
             ];
 
             return new JsonResponse($data, 201);

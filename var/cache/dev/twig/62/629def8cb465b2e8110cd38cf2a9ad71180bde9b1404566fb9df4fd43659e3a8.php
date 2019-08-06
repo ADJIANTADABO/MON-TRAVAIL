@@ -119,6 +119,6 @@ class __TwigTemplate_8683e3ab986726fa79a10f74883982674941f5c2ad7b466057ccf3bb706
         </div>
     </body>
 </html>
-", "@Twig/Exception/error.html.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/twig-bundle/Resources/views/Exception/error.html.twig");
+", "@Twig/Exception/error.html.twig", "/home/adji/MON-TRAVAIL/vendor/symfony/twig-bundle/Resources/views/Exception/error.html.twig");
     }
 }

@@ -63,6 +63,6 @@ class __TwigTemplate_0ab9fdd805332ca6fa27e5bf3ed2bbecd09ba2bd8751fa79a6d769bb0ae
     public function getSourceContext()
     {
         return new Source("{{ { 'error': { 'code': status_code, 'message': status_text } }|json_encode|raw }}
-", "@Twig/Exception/error.json.twig", "/home/adji/Bureau/TRANSFERT-ARGENT/vendor/symfony/twig-bundle/Resources/views/Exception/error.json.twig");
+", "@Twig/Exception/error.json.twig", "/home/adji/MON-TRAVAIL/vendor/symfony/twig-bundle/Resources/views/Exception/error.json.twig");
     }
 }
