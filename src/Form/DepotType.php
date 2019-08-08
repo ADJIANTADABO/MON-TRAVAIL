@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Depot;
 use App\Entity\Compte;
+use App\Form\CompteType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
@@ -15,7 +16,7 @@ class DepotType extends AbstractType
     {
         $builder
             ->add('montant')
-            ->add('datedepot')
+            // ->add('datedepot')
             ->add('compte',EntityType::class,[
                 'class'=> Compte::class,
                 'choice_label'=> 'compte_id'

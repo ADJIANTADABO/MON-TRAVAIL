@@ -50,7 +50,7 @@ class UtilisateurController extends AbstractController
             $user = new User();
             $user->setUsername($values->username);
             $user->setPassword($passwordEncoder->encodePassword($user,$values->password));
-            $user->setRoles(["ROLE_ADMIN"]);
+            // $user->setRoles(["ROLE_ADMIN"]);
             $user->setNom($values->nom);
             $user->setPrenom($values->prenom);
             $user->setAdresse($values->adresse);
@@ -79,6 +79,7 @@ class UtilisateurController extends AbstractController
             elseif($profils->getLibelle() == "USER"){
                 $role=["ROLE_USER"];
             }
+            $user->setRoles($role);
 
             $repo = $this->getDoctrine()->getRepository(Compte::class);
             $comptes=$repo->find($values->compte);

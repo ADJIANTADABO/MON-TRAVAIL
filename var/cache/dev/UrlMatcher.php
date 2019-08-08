@@ -9,11 +9,13 @@ return [
     false, // $matchHost
     [ // $staticRoutes
         '/api/partenaireuser' => [[['_route' => 'apipartenaire', '_controller' => 'App\\Controller\\AjoutController::partuser'], null, ['POST' => 0], null, false, false, null]],
-        '/api/depoTcompte' => [[['_route' => 'apidepot', '_controller' => 'App\\Controller\\AjoutController::depot'], null, null, null, false, false, null]],
         '/api/bloquer' => [[['_route' => 'apiupdatparten', '_controller' => 'App\\Controller\\AjoutController::userBloquer'], null, ['POST' => 0], null, false, false, null]],
         '/api/debloquer' => [[['_route' => 'apiupdat', '_controller' => 'App\\Controller\\AjoutController::userBloquer'], null, ['POST' => 0], null, false, false, null]],
-        '/api/listParten' => [[['_route' => 'apilistpartenaire', '_controller' => 'App\\Controller\\AjoutController::listParten'], null, ['GET' => 0], null, false, false, null]],
-        '/api/register' => [[['_route' => 'apiregister', '_controller' => 'App\\Controller\\UserController::new'], null, null, null, false, false, null]],
+        '/api/listParten' => [[['_route' => 'apilistpartenaire', '_controller' => 'App\\Controller\\AjoutController::listParten'], null, ['POST' => 0], null, false, false, null]],
+        '/api/register' => [[['_route' => 'apiregister', '_controller' => 'App\\Controller\\UserController::new'], null, ['POST' => 0], null, false, false, null]],
+        '/api/depot' => [[['_route' => 'apidepot', '_controller' => 'App\\Controller\\UserController::depot'], null, ['POST' => 0], null, false, false, null]],
+        '/api/caissier' => [[['_route' => 'apicaissier', '_controller' => 'App\\Controller\\UserController::ajoutcaissier'], null, ['POST' => 0], null, false, false, null]],
+        '/api/user' => [[['_route' => 'apiuser', '_controller' => 'App\\Controller\\UserController::ajoutuser'], null, ['POST' => 0], null, false, false, null]],
         '/api/login' => [[['_route' => 'login', '_controller' => 'App\\Controller\\UtilisateurController::login'], null, ['POST' => 0], null, false, false, null]],
         '/api/utilisateur' => [[['_route' => 'register', '_controller' => 'App\\Controller\\UtilisateurController::register'], null, ['POST' => 0], null, false, false, null]],
         '/api/profil' => [[['_route' => 'profil', '_controller' => 'App\\Controller\\UtilisateurController::ajoutprofil'], null, ['POST' => 0], null, false, false, null]],

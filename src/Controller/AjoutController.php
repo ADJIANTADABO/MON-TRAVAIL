@@ -58,6 +58,8 @@ class AjoutController extends AbstractController
         $user->setCni($values->cni);
         $user->setStatut($values->statut);
         //$user->setRoles(['ROLE_ADMIN']);
+        $user->setImageName("null");
+            $user->setUpdatedAt(new \DateTime('now'));
         $user->setPartenaire($part);
         
 
@@ -94,7 +96,7 @@ class AjoutController extends AbstractController
 
 //================================Faire un dépot d'argent===========================£================================================================//
      /**
-     * @Route("/depoTcompte", name="depot")
+     * @Route("/depocompte", name="depot")
      */
     public function depot(Request $request,EntityManagerInterface $entityManager)
     {
@@ -121,7 +123,7 @@ class AjoutController extends AbstractController
 
             $data = [
                 'status' => 201,
-                'message' => 'Le depot est fait avec succées'
+                'message' => 'Le depot est fait avec succées '
             ];
             return new JsonResponse($data, 201);
             
@@ -169,7 +171,7 @@ public function userBloquer(Request $request, UserRepository $userRepo,EntityMan
     }
 //==============================Lister Partenaire========================£======================================================================================================//
 /**
-     * @Route("/listParten", name="listpartenaire", methods={"GET"})
+     * @Route("/listParten", name="listpartenaire", methods={"POST"})
      */
     public function listParten(PartenaireRepository $partenaireRepository, SerializerInterface $serializer)
     {

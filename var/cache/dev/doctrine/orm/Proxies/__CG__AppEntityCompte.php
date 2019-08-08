@@ -191,7 +191,7 @@ class Compte extends \App\Entity\Compte implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function getNumcompte(): ?int
+    public function getNumcompte(): ?string
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'getNumcompte', []);
@@ -202,7 +202,7 @@ class Compte extends \App\Entity\Compte implements \Doctrine\ORM\Proxy\Proxy
     /**
      * {@inheritDoc}
      */
-    public function setNumcompte(int $numcompte): \App\Entity\Compte
+    public function setNumcompte(string $numcompte): \App\Entity\Compte
     {
 
         $this->__initializer__ && $this->__initializer__->__invoke($this, 'setNumcompte', [$numcompte]);

@@ -5,9 +5,14 @@ namespace App\Form;
 use App\Entity\User;
 use App\Entity\Compte;
 use App\Entity\Profil;
+use App\Form\CompteType;
+use App\Form\ProfilType;
 use App\Entity\Partenaire;
+use App\Form\PartenaireType;
 use Symfony\Component\Form\AbstractType;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -24,17 +29,18 @@ class UserType extends AbstractType
             ->add('email')
             ->add('telephone')
             ->add('cni')
+            ->add('imageFile',VichImageType::class)
+            
             ->add('compte',EntityType::class,[
-                'class1'=> Compte::class,
-                'choice_label1'=> 'compte_id'
+                'class'=> Compte::class,
+                'choice_label'=> 'compte_id',
             ])
-            ->add('partenaire',EntityType::class,[
-                'class'=> Partenaire::class,
-                'choice_label'=> 'partenaire_id'
-            ])
+            // ->add('partenaire',EntityType::class,[
+            //     'class'=> Partenaire::class,
+            // //     'choice_label'=> 'partenaire_id',
+            // ])
             ->add('profil',EntityType::class,[
-                'class'=> Profil::class,
-                'choice_label'=> 'profil_id'
+                'class'=> Profil::class
             ])
             ->add('statut');
     }

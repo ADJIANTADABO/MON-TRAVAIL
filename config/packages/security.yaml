@@ -39,5 +39,5 @@ security:
         - { path: ^/api/login, roles: IS_AUTHENTICATED_ANONYMOUSL }
         - { path: ^/api,       roles: IS_AUTHENTICATED_FULLY }
         - { path: ^/api/utilsateur, roles: ROLE_ADMIN  }
-        - { path: ^/api/patenaireuser, roles: SUPER_ADMIN  }
-        - { path: ^/api/depotcompte, roles: CAISSIER  }
+        - { path: ^/api/patenaireuser, roles: ROLE_SUPER_ADMIN  }
+        - { path: ^/api/depocompte, roles: ROLE_CAISSIER  }

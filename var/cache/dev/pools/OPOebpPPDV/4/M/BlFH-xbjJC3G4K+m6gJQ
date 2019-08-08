@@ -7,13 +7,7 @@ return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
         clone (Registry::$prototypes['Doctrine\\ORM\\Mapping\\Column'] ?? Registry::p('Doctrine\\ORM\\Mapping\\Column')),
     ],
     null,
-    [
-        'stdClass' => [
-            'type' => [
-                'integer',
-            ],
-        ],
-    ],
+    [],
     [
         $o[0],
     ],
