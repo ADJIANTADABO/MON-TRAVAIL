@@ -1,0 +1,27 @@
+<?php
+
+namespace Symfony\Component\VarExporter\Internal;
+
+return $getExpiry ? PHP_INT_MAX : Hydrator::hydrate(
+    $o = [
+        clone (Registry::$prototypes['ApiPlatform\\Core\\Metadata\\Resource\\ResourceNameCollection'] ?? Registry::p('ApiPlatform\\Core\\Metadata\\Resource\\ResourceNameCollection')),
+    ],
+    null,
+    [
+        'ApiPlatform\\Core\\Metadata\\Resource\\ResourceNameCollection' => [
+            'classes' => [
+                [
+                    'App\\Entity\\Transaction',
+                    'App\\Entity\\Recepteur',
+                    'App\\Entity\\Depot',
+                    'App\\Entity\\Compte',
+                    'App\\Entity\\Profil',
+                    'App\\Entity\\Partenaire',
+                    'App\\Entity\\Expediteur',
+                ],
+            ],
+        ],
+    ],
+    $o[0],
+    []
+);

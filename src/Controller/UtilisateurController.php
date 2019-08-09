@@ -16,7 +16,9 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Exception\JWTEncodeFailureException;
 
 
 
@@ -25,19 +27,20 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
  */
 class UtilisateurController extends AbstractController
 {
-//==================Login================================£=========================================================================================//
-    /**
-     * @Route("/login", name="login", methods={"POST"})
-     */
-    public function login(Request $request)
-    {
-        $user = $this->getUser();
-        return $this->json([
+   
+//====================================Login================================£=========================================================================================//
+    // /**
+    //  * @Route("/login", name="login", methods={"POST"})
+    //  */
+    // public function login(Request $request)
+    // {
+    //     $user = $this->getUser();
+    //     return $this->json([
 
-            'roles' => $user->getRoles(),
-            'username' => $user->getUsername()
-        ]);
-    }
+    //         'roles' => $user->getRoles(),
+    //         'username' => $user->getUsername()
+    //     ]);
+    // }
 //====================Ajouter utilisateur==================================£========================================================================================================================£
     /**
      * @Route("/utilisateur", name="register", methods={"POST"})
@@ -97,7 +100,7 @@ class UtilisateurController extends AbstractController
         }
         $data = [
             'statut' => 500,
-            'messag' => 'Vous devez renseigner les clés d\'utilisateur et mot de passe'
+            'message2' => 'Vous devez renseigner les clés d\'utilisateur et mot de passe'
         ];
         return new JsonResponse($data, 500);
     }
@@ -113,11 +116,11 @@ class UtilisateurController extends AbstractController
         $entityManager->flush();
         $data = [
             'status' => 201,
-            'message' => 'Le Profil a bien été ajouté'
+            'message3' => 'Le Profil a bien été ajouté'
         ];
         return new JsonResponse($data, 201);
         }
-//====================Ajouter Compte=============================================£========================================================================================================================£
+//====================AJOUTER COMPTE=============================================£========================================================================================================================£
     /** 
     * @Route("/compte", name="compte", methods={"POST"})
     */
@@ -138,12 +141,13 @@ class UtilisateurController extends AbstractController
         $entityManager->flush();
         $data = [
             'status' => 201,
-            'message' => 'Le compte a bien été ajouté'
+            'message4' => 'Le compte a bien été ajouté'
         ];
         return new JsonResponse($data, 201);
         }
+//===============================BLOQUER SANS EMETTRE DE TOKEN==============================================================================================//
 
-   
-//======================================================================================================================================================//
+    
 
-    }
+}
+ 

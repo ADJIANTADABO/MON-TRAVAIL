@@ -14,6 +14,7 @@ use App\Form\UserFormType;
 use App\Form\PartenaireType;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Entity;
+use App\Repository\UserRepository;
 use App\Repository\CompteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\FileBag;
@@ -24,12 +25,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\Validator\Constraints\DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Lexik\Bundle\JWTAuthenticationBundle\Encoder\JWTEncoderInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Lexik\Bundle\JWTAuthenticationBundle\Exception\JWTEncodeFailureException;
     /**
      * @Route("/api", name="api")
      */
 class UserController extends AbstractController
 {
+    private $passwordEncoder;
+
+
 //================================AJOUTER USER COMPTE PARTENAIRE===========================£================================================================//
 
     /**
@@ -221,7 +227,6 @@ public function ajoutuser(Request $request, UserPasswordEncoderInterface $passwo
             ];
     
             return new JsonResponse($data, 500);
-    
-          
-        }
+     }
+
 }

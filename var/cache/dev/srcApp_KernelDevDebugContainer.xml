@@ -427,6 +427,14 @@
   </parameters>
   <services>
     <service id="service_container" class="Symfony\Component\DependencyInjection\ContainerInterface" public="true" synthetic="true"/>
+    <service id="App\Controller\AdjiController" class="App\Controller\AdjiController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <argument type="service" id="security.user_password_encoder.generic"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.CDOTD6..App\Controller\AdjiController"/>
+      </call>
+    </service>
     <service id="App\Controller\AjoutController" class="App\Controller\AjoutController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -1594,14 +1602,6 @@
         <argument>2048</argument>
       </call>
       <call method="addListener">
-        <argument>console.command</argument>
-        <argument type="collection">
-          <argument type="service" id="debug.debug_handlers_listener"/>
-          <argument>configure</argument>
-        </argument>
-        <argument>2048</argument>
-      </call>
-      <call method="addListener">
         <argument>kernel.exception</argument>
         <argument type="collection">
           <argument type="service" id="debug.debug_handlers_listener"/>
@@ -2466,6 +2466,7 @@
     </service>
     <service id="security.authentication.manager" class="Symfony\Component\Security\Core\Authentication\AuthenticationProviderManager" public="false">
       <argument type="iterator">
+        <argument type="service" id="security.authentication.provider.dao.main"/>
         <argument type="service" id="security.authentication.provider.dao.login"/>
         <argument type="service" id="security.authentication.provider.anonymous.login"/>
         <argument type="service" id="security.authentication.provider.guard.api"/>
@@ -2489,12 +2490,16 @@
     <service id="security.encoder_factory.generic" class="Symfony\Component\Security\Core\Encoder\EncoderFactory" public="false">
       <argument type="collection">
         <argument key="App\Entity\User" type="collection">
-          <argument key="class">Symfony\Component\Security\Core\Encoder\Argon2iPasswordEncoder</argument>
-          <argument key="arguments" type="collection">
-            <argument>null</argument>
-            <argument>null</argument>
-            <argument>null</argument>
-          </argument>
+          <argument key="algorithm">auto</argument>
+          <argument key="hash_algorithm">sha512</argument>
+          <argument key="key_length">40</argument>
+          <argument key="ignore_case">false</argument>
+          <argument key="encode_as_base64">true</argument>
+          <argument key="iterations">5000</argument>
+          <argument key="cost">null</argument>
+          <argument key="memory_cost">null</argument>
+          <argument key="time_cost">null</argument>
+          <argument key="threads">null</argument>
         </argument>
       </argument>
     </service>
@@ -2526,9 +2531,10 @@
       <argument type="service" id="security.role_hierarchy" on-invalid="null"/>
     </service>
     <service id="security.firewall.map" class="Symfony\Bundle\SecurityBundle\Security\FirewallMap" public="false">
-      <argument type="service" id=".service_locator.o0tDlWL"/>
+      <argument type="service" id=".service_locator.oH9nEei"/>
       <argument type="iterator">
         <argument key="security.firewall.map.context.dev" type="service" id=".security.request_matcher.Iy.T22O"/>
+        <argument key="security.firewall.map.context.main">null</argument>
         <argument key="security.firewall.map.context.login" type="service" id=".security.request_matcher.HeUdK73"/>
         <argument key="security.firewall.map.context.api" type="service" id=".security.request_matcher.p4VlLPC"/>
       </argument>
@@ -2622,7 +2628,7 @@
       <call method="add">
         <argument type="service" id=".security.request_matcher.Ud1TEPV"/>
         <argument type="collection">
-          <argument>IS_AUTHENTICATED_ANONYMOUSL</argument>
+          <argument>IS_AUTHENTICATED_ANONYMOUSLY</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -2630,27 +2636,6 @@
         <argument type="service" id=".security.request_matcher.cRNYaJ1"/>
         <argument type="collection">
           <argument>IS_AUTHENTICATED_FULLY</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.rPgQ4VL"/>
-        <argument type="collection">
-          <argument>ROLE_ADMIN</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.BmjRnvZ"/>
-        <argument type="collection">
-          <argument>ROLE_SUPER_ADMIN</argument>
-        </argument>
-        <argument>null</argument>
-      </call>
-      <call method="add">
-        <argument type="service" id=".security.request_matcher.vpMXznm"/>
-        <argument type="collection">
-          <argument>ROLE_CAISSIER</argument>
         </argument>
         <argument>null</argument>
       </call>
@@ -2996,6 +2981,82 @@
       <argument>null</argument>
       <argument type="service" id="security.firewall.map.config.dev"/>
     </service>
+    <service id="security.firewall.map.config.main" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
+      <argument>main</argument>
+      <argument>security.user_checker</argument>
+      <argument>null</argument>
+      <argument>true</argument>
+      <argument>false</argument>
+      <argument>security.user.provider.concrete.app_user_provider</argument>
+      <argument>main</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+      <argument type="collection">
+        <argument>json_login</argument>
+      </argument>
+      <argument>null</argument>
+    </service>
+    <service id="security.context_listener.0" class="Symfony\Component\Security\Http\Firewall\ContextListener" public="false">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="iterator">
+        <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+      </argument>
+      <argument>main</argument>
+      <argument type="service" id="logger" on-invalid="null"/>
+      <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
+      <argument type="service" id="security.authentication.trust_resolver"/>
+    </service>
+    <service id="security.authentication.provider.dao.main" class="Symfony\Component\Security\Core\Authentication\Provider\DaoAuthenticationProvider" public="false">
+      <argument type="service" id="security.user.provider.concrete.app_user_provider"/>
+      <argument type="service" id="security.user_checker"/>
+      <argument>main</argument>
+      <argument type="service" id="security.encoder_factory.generic"/>
+      <argument>true</argument>
+    </service>
+    <service id="security.authentication.listener.json.main" class="Symfony\Component\Security\Http\Firewall\UsernamePasswordJsonAuthenticationListener" public="false">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.authentication.manager"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument>main</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+      <argument type="collection">
+        <argument key="check_path">/api/login_check</argument>
+        <argument key="use_forward">false</argument>
+        <argument key="require_previous_session">false</argument>
+        <argument key="username_path">username</argument>
+        <argument key="password_path">password</argument>
+      </argument>
+      <argument type="service" id="logger" on-invalid="null"/>
+      <argument type="service" id="debug.event_dispatcher" on-invalid="null"/>
+      <argument type="service" id="property_accessor" on-invalid="null"/>
+      <call method="setSessionAuthenticationStrategy">
+        <argument type="service" id="security.authentication.session_strategy"/>
+      </call>
+    </service>
+    <service id="security.exception_listener.main" class="Symfony\Component\Security\Http\Firewall\ExceptionListener" public="false">
+      <argument type="service" id="security.token_storage"/>
+      <argument type="service" id="security.authentication.trust_resolver"/>
+      <argument type="service" id="security.http_utils"/>
+      <argument>main</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+      <argument>null</argument>
+      <argument type="service" id="logger" on-invalid="null"/>
+      <argument>false</argument>
+    </service>
+    <service id="security.firewall.map.context.main" class="Symfony\Bundle\SecurityBundle\Security\FirewallContext" public="false">
+      <argument type="iterator">
+        <argument type="service" id="security.channel_listener"/>
+        <argument type="service" id="security.context_listener.0"/>
+        <argument type="service" id="security.authentication.listener.json.main"/>
+        <argument type="service" id="security.access_listener"/>
+      </argument>
+      <argument type="service" id="security.exception_listener.main"/>
+      <argument>null</argument>
+      <argument type="service" id="security.firewall.map.config.main"/>
+    </service>
     <service id="security.firewall.map.config.login" class="Symfony\Bundle\SecurityBundle\Security\FirewallConfig" public="false">
       <argument>login</argument>
       <argument>security.user_checker</argument>
@@ -3161,12 +3222,13 @@
       <argument>null</argument>
       <argument type="service" id="security.firewall.map.config.api"/>
     </service>
-    <service id=".service_locator.o0tDlWL" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.oH9nEei" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="security.firewall.map.context.api" type="service" id="security.firewall.map.context.api"/>
         <argument key="security.firewall.map.context.dev" type="service" id="security.firewall.map.context.dev"/>
         <argument key="security.firewall.map.context.login" type="service" id="security.firewall.map.context.login"/>
+        <argument key="security.firewall.map.context.main" type="service" id="security.firewall.map.context.main"/>
       </argument>
     </service>
     <service id=".security.request_matcher.Ud1TEPV" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
@@ -3174,15 +3236,6 @@
     </service>
     <service id=".security.request_matcher.cRNYaJ1" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
       <argument>^/api</argument>
-    </service>
-    <service id=".security.request_matcher.rPgQ4VL" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/api/utilsateur</argument>
-    </service>
-    <service id=".security.request_matcher.BmjRnvZ" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/api/patenaireuser</argument>
-    </service>
-    <service id=".security.request_matcher.vpMXznm" class="Symfony\Component\HttpFoundation\RequestMatcher" public="false">
-      <argument>^/api/depocompte</argument>
     </service>
     <service id="security.command.user_password_encoder" class="Symfony\Bundle\SecurityBundle\Command\UserPasswordEncoderCommand" public="false">
       <tag name="console.command" command="security:encode-password"/>
@@ -5094,6 +5147,9 @@
       <argument type="service" id="vich_uploader.metadata_reader"/>
       <argument type="service" id="vich_uploader.upload_handler"/>
     </service>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AdjiController" class="App\Controller\AdjiController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AdjiController" class="App\Controller\AdjiController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\AdjiController" class="App\Controller\AdjiController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\AjoutController" class="App\Controller\AjoutController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\AjoutController" class="App\Controller\AjoutController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\AjoutController" class="App\Controller\AjoutController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -5301,6 +5357,12 @@
         <argument>make:migration</argument>
       </call>
     </service>
+    <service id=".service_locator.0xDS.HG" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="JWTEncoder" type="service" id="lexik_jwt_authentication.encoder.lcobucci"/>
+      </argument>
+    </service>
     <service id=".service_locator.H3qnu8f" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -5351,9 +5413,10 @@
         <argument key="serializer" type="service" id="serializer"/>
       </argument>
     </service>
-    <service id=".service_locator.e8bpqs4" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+    <service id=".service_locator.76McLZV" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Controller\AdjiController::log" type="service" id=".service_locator.0xDS.HG"/>
         <argument key="App\Controller\AjoutController::depot" type="service" id=".service_locator.ZIsCxOI"/>
         <argument key="App\Controller\AjoutController::listParten" type="service" id=".service_locator.eIEYWuf"/>
         <argument key="App\Controller\AjoutController::partuser" type="service" id=".service_locator.H3qnu8f"/>
@@ -5365,6 +5428,7 @@
         <argument key="App\Controller\UtilisateurController::ajoutcompte" type="service" id=".service_locator.k22NER8"/>
         <argument key="App\Controller\UtilisateurController::ajoutprofil" type="service" id=".service_locator.k22NER8"/>
         <argument key="App\Controller\UtilisateurController::register" type="service" id=".service_locator.JBoVXlr"/>
+        <argument key="App\Controller\AdjiController:log" type="service" id=".service_locator.0xDS.HG"/>
         <argument key="App\Controller\AjoutController:depot" type="service" id=".service_locator.ZIsCxOI"/>
         <argument key="App\Controller\AjoutController:listParten" type="service" id=".service_locator.eIEYWuf"/>
         <argument key="App\Controller\AjoutController:partuser" type="service" id=".service_locator.H3qnu8f"/>
@@ -5537,6 +5601,12 @@
         <argument key="twig" type="service" id="twig" on-invalid="ignore"/>
       </argument>
     </service>
+    <service id=".service_locator.CDOTD6..App\Controller\AdjiController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
+      <tag name="container.service_locator_context" id="App\Controller\AdjiController"/>
+      <argument>App\Controller\AdjiController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.CDOTD6." method="withContext"/>
+    </service>
     <service id=".service_locator.CDOTD6..App\Controller\AjoutController" class="Symfony\Component\DependencyInjection\ServiceLocator" public="false">
       <tag name="container.service_locator_context" id="App\Controller\AjoutController"/>
       <argument>App\Controller\AjoutController</argument>
@@ -5659,12 +5729,12 @@
       <argument type="service" id="security.token_storage"/>
     </service>
     <service id="debug.argument_resolver.service.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver" public="false">
-      <argument type="service" id=".service_locator.e8bpqs4"/>
+      <argument type="service" id=".service_locator.76McLZV"/>
     </service>
     <service id="debug.argument_resolver.default.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver" public="false"/>
     <service id="debug.argument_resolver.variadic.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\VariadicValueResolver" public="false"/>
     <service id="debug.argument_resolver.not_tagged_controller.inner" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver" public="false">
-      <argument type="service" id=".service_locator.e8bpqs4"/>
+      <argument type="service" id=".service_locator.76McLZV"/>
     </service>
     <service id="api_platform.swagger.normalizer.api_gateway.inner" class="ApiPlatform\Core\Swagger\Serializer\DocumentationNormalizer" public="false">
       <argument type="service" id="api_platform.metadata.resource.metadata_factory.cached"/>
@@ -5940,6 +6010,8 @@
     <service id="Symfony\Component\Security\Guard\GuardAuthenticatorHandler" alias="security.authentication.guard_handler" public="false"/>
     <service id="security.firewall" alias="debug.security.firewall" public="false"/>
     <service id="Symfony\Component\Security\Core\User\UserProviderInterface" alias="security.user.provider.concrete.app_user_provider"/>
+    <service id="security.authentication.session_strategy.main" alias="security.authentication.session_strategy"/>
+    <service id="security.user_checker.main" alias="security.user_checker" public="false"/>
     <service id="security.authentication.session_strategy.login" alias="security.authentication.session_strategy_noop"/>
     <service id="security.user_checker.login" alias="security.user_checker" public="false"/>
     <service id="security.authentication.session_strategy.api" alias="security.authentication.session_strategy_noop"/>
@@ -6042,7 +6114,7 @@
     <service id="Vich\UploaderBundle\Form\Type\VichImageType" alias="vich_uploader.form.type.image" public="false"/>
     <service id="Vich\UploaderBundle\Templating\Helper\UploaderHelper" alias="vich_uploader.templating.helper.uploader_helper" public="false"/>
     <service id="Vich\UploaderBundle\Twig\Extension\UploaderExtension" alias="vich_uploader.twig.extension.uploader" public="false"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.e8bpqs4"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.76McLZV"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem" public="false"/>
     <service id="twig.loader" alias="twig.loader.native_filesystem"/>
     <service id="api_platform.name_converter" alias="serializer.name_converter.metadata_aware"/>

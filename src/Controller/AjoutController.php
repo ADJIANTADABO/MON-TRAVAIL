@@ -156,9 +156,9 @@ public function userBloquer(Request $request, UserRepository $userRepo,EntityMan
             }
             $user->setStatut("debloquer");
             }
-                // else{
-                //     $user->setStatut("bloquer");
-                //     $user->setRoles(["ROLE_USERLOCK"]);
+            else{
+             $user->setStatut("bloquer");
+             $user->setRoles(["ROLE_USERLOCK"]);
          
 
         $entityManager->flush();
@@ -169,6 +169,7 @@ public function userBloquer(Request $request, UserRepository $userRepo,EntityMan
         return new JsonResponse($data);
     
     }
+}
 //==============================Lister Partenaire========================£======================================================================================================//
 /**
      * @Route("/listParten", name="listpartenaire", methods={"POST"})
